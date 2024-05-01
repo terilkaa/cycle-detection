@@ -16,7 +16,7 @@ public abstract class CycleDetectionAlgorithms {
     protected static Node head = null;
 
     // Insert a new value at the start of the linked list
-    protected void insert(int value) {
+    protected static void insert(int value) {
         Node newNode = new Node(value);
         if (head == null) {
             head = newNode;
