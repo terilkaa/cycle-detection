@@ -3,7 +3,7 @@ public class FloydCycleDetection extends CycleDetectionAlgorithms {
         Node tortoise = head,
                 hare = head;
 
-        while (tortoise != null && hare != null && hare.next != null) {
+        while (hare != null && hare.next != null) {
             tortoise = tortoise.next;
             hare = hare.next.next;
             if (tortoise == hare) {
@@ -28,8 +28,9 @@ public class FloydCycleDetection extends CycleDetectionAlgorithms {
         for (int i = 0; i < 16; i++) {
             insert(i);
         }
-
-        head.next.next.next.next.next.next.next.next.next.next.next.next.next = head.next.next;
+        System.out.println(head.next.next.next.next.next.next.next.next.next.next.next.next.next.data);
+        System.out.println(head.next.data);
+        head.next.next.next.next.next.next.next.next.next.next.next.next.next= head.next;
 
         int[] result = detectLoop();
         System.out.println("Floyd's Cycle Detection Algorithm");
