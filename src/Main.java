@@ -21,10 +21,10 @@ public class Main {
         }
 
         BrentCycleDetection brentDetection = new BrentCycleDetection();
-        brentDetection.insert(1);
-        brentDetection.insert(2);
-        brentDetection.insert(3);
-        brentDetection.insert(4);
+        for (int i = 0; i < 16; i++) {
+            brentDetection.insert(i);
+        }
+        brentDetection.insertEdge(0, 1);
 
         // add a loop
         BrentCycleDetection.head.next.next.next = BrentCycleDetection.head;

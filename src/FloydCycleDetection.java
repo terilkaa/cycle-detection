@@ -4,26 +4,26 @@ public class FloydCycleDetection extends CycleDetectionAlgorithms {
     // detect if there is a loop
     // in the linked list
     static int[] detectLoop() {
-        Node slowPointer = head,
-                fastPointer = head;
+        Node tortoise = head,
+                hare = head;
 
-        while (slowPointer != null
-                && fastPointer != null
-                && fastPointer.next != null) {
-            slowPointer = slowPointer.next;
-            fastPointer = fastPointer.next.next;
-            if (slowPointer == fastPointer) {
+        while (tortoise != null
+                && hare != null
+                && hare.next != null) {
+            tortoise = tortoise.next;
+            hare = hare.next.next;
+            if (tortoise == hare) {
                 int mu = 0;
-                slowPointer = head;
-                while (slowPointer != fastPointer) {
-                    slowPointer = slowPointer.next;
-                    fastPointer = fastPointer.next;
+                tortoise = head;
+                while (tortoise != hare) {
+                    tortoise = tortoise.next;
+                    hare = hare.next;
                     mu++;
                 }
                 int lambda = 1;
-                fastPointer = fastPointer.next;
-                while (slowPointer != fastPointer) {
-                    fastPointer = fastPointer.next;
+                hare = hare.next;
+                while (tortoise != hare) {
+                    hare = hare.next;
                     lambda++;
                 }
                 return new int[]{mu, lambda};
