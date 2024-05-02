@@ -1,4 +1,5 @@
 public class FloydCycleDetection extends CycleDetectionAlgorithms {
+
     static int[] detectLoop() {
         Node tortoise = head,
                 hare = head;
@@ -7,7 +8,7 @@ public class FloydCycleDetection extends CycleDetectionAlgorithms {
             tortoise = tortoise.next;
             hare = hare.next.next;
             if (tortoise == hare) {
-                int start = 0;
+                int start = 1;
                 int mu = 0;
                 tortoise = head;
                 while (tortoise != hare) {
@@ -25,17 +26,24 @@ public class FloydCycleDetection extends CycleDetectionAlgorithms {
 
     public static void main(String[] args) {
 
-        for (int i = 0; i < 16; i++) {
-            insert(i);
+        head = new Node(0);
+        Node current = head;
+        for (int i = 1; i < 16; i++) {
+            current.next = new Node(i);
+            current = current.next;
         }
-        System.out.println(head.next.next.next.next.next.next.next.next.next.next.next.next.next.data);
-        System.out.println(head.next.data);
-        head.next.next.next.next.next.next.next.next.next.next.next.next.next= head.next;
+
+        // Creating a cycle starting from the second node with a length of 14 nodes
+        Node cycleStart = head.next;
+        for (int i = 0; i < 13; i++) {
+            cycleStart = cycleStart.next;
+        }
+        current.next = cycleStart;
 
         int[] result = detectLoop();
         System.out.println("Floyd's Cycle Detection Algorithm");
         if (result[0] != -1) {
-            System.out.println("Cycle found at node " + result[0] + " with a length of " + result[1]);
+            System.out.println("Cycle found at node " + result[1] + " with a length of " + result[0]);
         } else {
             System.out.println("No cycle found");
         }

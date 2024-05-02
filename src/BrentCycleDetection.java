@@ -31,16 +31,23 @@ public class BrentCycleDetection extends CycleDetectionAlgorithms {
     }
     public static void main(String[] args) {
 
-        for (int i = 0; i < 16; i++) {
-            insert(i);
+        head = new Node(0);
+        Node current = head;
+        for (int i = 1; i < 16; i++) {
+            current.next = new Node(i);
+            current = current.next;
         }
 
-        head.next.next.next.next.next.next.next.next.next.next.next.next.next = head.next.next;
+        Node cycleStart = head.next;
+        for (int i = 0; i < 13; i++) {
+            cycleStart = cycleStart.next;
+        }
+        current.next = cycleStart;
 
         int[] result = detectLoop();
-        System.out.println("Brent's Cycle Detection Algorithm");
+        System.out.println("Floyd's Cycle Detection Algorithm");
         if (result[0] != -1) {
-            System.out.println("Cycle found at node " + result[0] + " with a length of " + result[1]);
+            System.out.println("Cycle found at node " + result[1] + " with a length of " + result[0]);
         } else {
             System.out.println("No cycle found");
         }
