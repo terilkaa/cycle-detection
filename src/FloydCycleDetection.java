@@ -33,7 +33,6 @@ public class FloydCycleDetection extends CycleDetectionAlgorithms {
             current = current.next;
         }
 
-        // Creating a cycle starting from the second node with a length of 14 nodes
         Node cycleStart = head.next;
         for (int i = 0; i < 13; i++) {
             cycleStart = cycleStart.next;
